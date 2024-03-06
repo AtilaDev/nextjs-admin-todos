@@ -1,6 +1,6 @@
-# Admin Todos
+# Admin Todos [WIP]
 
-### Development [WIP]
+### Development
 
 Pasos para levantar la app de desarrollo
 
