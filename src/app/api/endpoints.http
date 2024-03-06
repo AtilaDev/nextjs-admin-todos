@@ -1,0 +1,19 @@
+// Config
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}/api
+@contentType = application/json
+// End config
+
+### GET hola mundo
+GET http://{{host}}/hello
+
+### POST hola mundo
+POST http://{{host}}/hello
+Content-Type: application/json
+
+### Seed database
+GET http://{{host}}/seed
+
+### Listar Todos
+GET http://{{host}}/todos
