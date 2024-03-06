@@ -1,0 +1,6 @@
+### GET hola mundo
+GET http://localhost:3000/api/hello
+
+### POST hola mundo
+POST http://localhost:3000/api/hello
+Content-Type: application/json
