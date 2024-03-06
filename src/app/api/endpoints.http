@@ -16,4 +16,4 @@ Content-Type: application/json
 GET http://{{host}}/seed
 
 ### Listar Todos
-GET http://{{host}}/todos
+GET http://{{host}}/todos?take=3&skip=1
