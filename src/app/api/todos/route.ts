@@ -1,5 +1,6 @@
 import prisma from '@/app/lib/prisma';
 import { NextResponse, NextRequest } from 'next/server';
+import * as yup from 'yup';
 
 function checkIfNumberAndRespond(value: number, fieldName: string) {
   if (isNaN(value)) {
@@ -33,21 +34,25 @@ export async function GET(request: Request) {
   return NextResponse.json(todos);
 }
 
+const postSchema = yup.object({
+  description: yup.string().required(),
+  complete: yup.boolean().optional().default(false),
+});
+
 export async function POST(req: Request) {
-  const body = await req.json();
-
-  if (!body) {
-    return NextResponse.json(
-      {
-        message: 'Invalid request body. The "description" property is missing.',
-      },
-      { status: 400 }
+  try {
+    const { description, complete } = await postSchema.validate(
+      await req.json()
     );
+    const todo = await prisma.todo.create({
+      data: {
+        description,
+        complete,
+      },
+    });
+
+    return NextResponse.json(todo);
+  } catch (error) {
+    return NextResponse.json(error, { status: 400 });
   }
-
-  const todo = await prisma.todo.create({
-    data: body,
-  });
-
-  return NextResponse.json(todo);
 }
