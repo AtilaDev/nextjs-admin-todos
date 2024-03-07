@@ -32,3 +32,22 @@ export async function GET(request: Request) {
 
   return NextResponse.json(todos);
 }
+
+export async function POST(req: Request) {
+  const body = await req.json();
+
+  if (!body) {
+    return NextResponse.json(
+      {
+        message: 'Invalid request body. The "description" property is missing.',
+      },
+      { status: 400 }
+    );
+  }
+
+  const todo = await prisma.todo.create({
+    data: body,
+  });
+
+  return NextResponse.json(todo);
+}
