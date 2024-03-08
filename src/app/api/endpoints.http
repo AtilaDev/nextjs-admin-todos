@@ -21,11 +21,20 @@ GET http://{{host}}/todos?take=3&skip=1
 ### Traer solo un registro
 GET http://{{host}}/todos/d615e102-0b10-4c78-bdc1-ff2700086ca8
 
-###
+### Agregar un nuevo registro
 POST http://{{host}}/todos
 Content-Type: application/json
 
 {    
   "description": "Lunes",
+  "complete": true
+}
+
+### Actulizar un registro
+PUT  http://{{host}}/todos/d615e102-0b10-4c78-bdc1-ff2700086ca8
+Content-Type: application/json
+
+{    
+  "description": "Desde el Endpoint",
   "complete": true
 }
