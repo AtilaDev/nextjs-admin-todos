@@ -35,6 +35,6 @@ PUT  http://{{host}}/todos/d615e102-0b10-4c78-bdc1-ff2700086ca8
 Content-Type: application/json
 
 {    
-  "description": "Desde el Endpoint",
-  "complete": true
+  "description": "Desde el la virtualidad",
+  "complete": false
 }
