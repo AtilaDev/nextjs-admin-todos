@@ -1,7 +1,30 @@
-import { CiBookmarkCheck, CiLogout } from 'react-icons/ci';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  IoCalendarOutline,
+  IoCheckboxOutline,
+  IoListOutline,
+} from 'react-icons/io5';
+import { CiLogout } from 'react-icons/ci';
 import { SidebarItem } from '.';
+
+const menuItems = [
+  {
+    path: '/dashboard',
+    title: 'Dashboard',
+    icon: <IoCalendarOutline />,
+  },
+  {
+    path: '/dashboard/rest-todos',
+    title: 'Rest TODOS',
+    icon: <IoCheckboxOutline />,
+  },
+  {
+    path: '/dashboard/server-todos',
+    title: 'Server Actions',
+    icon: <IoListOutline />,
+  },
+];
 
 export const Sidebar = () => {
   return (
@@ -34,19 +57,9 @@ export const Sidebar = () => {
         </div>
 
         <ul className='space-y-2 tracking-wide mt-8'>
-          {/* Active className: text-white bg-gradient-to-r from-sky-600 to-cyan-400 */}
-
-          <SidebarItem
-            href='/dashboard'
-            text='Dashboard'
-            icon={<CiBookmarkCheck />}
-          />
-
-          <SidebarItem
-            href='/dashboard/rest-todos'
-            text='Categories'
-            icon={<CiBookmarkCheck />}
-          />
+          {menuItems.map((item) => (
+            <SidebarItem key={item.path} {...item} />
+          ))}
         </ul>
       </div>
 
