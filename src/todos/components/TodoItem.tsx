@@ -1,6 +1,5 @@
 'use client';
 
-import { FormEvent } from 'react';
 import { Todo } from '@prisma/client';
 import styles from './TodoItem.module.css';
 import { IoCheckboxOutline, IoSquareOutline } from 'react-icons/io5';
