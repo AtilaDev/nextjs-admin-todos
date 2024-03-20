@@ -7,6 +7,7 @@ import {
 } from 'react-icons/io5';
 import { CiLogout } from 'react-icons/ci';
 import { SidebarItem } from '.';
+import { BsCookie } from 'react-icons/bs';
 
 const menuItems = [
   {
@@ -23,6 +24,11 @@ const menuItems = [
     path: '/dashboard/server-todos',
     title: 'Server Actions',
     icon: <IoListOutline />,
+  },
+  {
+    path: '/dashboard/cookies',
+    title: 'Cookies',
+    icon: <BsCookie />,
   },
 ];
 
