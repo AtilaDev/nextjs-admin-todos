@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
+  IoBasketOutline,
   IoCalendarOutline,
   IoCheckboxOutline,
   IoListOutline,
@@ -29,6 +30,11 @@ const menuItems = [
     path: '/dashboard/cookies',
     title: 'Cookies',
     icon: <BsCookie />,
+  },
+  {
+    path: '/dashboard/products',
+    title: 'Products',
+    icon: <IoBasketOutline />,
   },
 ];
 
