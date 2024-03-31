@@ -5,10 +5,13 @@ import {
   IoCalendarOutline,
   IoCheckboxOutline,
   IoListOutline,
+  IoPersonOutline,
 } from 'react-icons/io5';
 import { CiLogout } from 'react-icons/ci';
 import { SidebarItem } from '.';
 import { BsCookie } from 'react-icons/bs';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 const menuItems = [
   {
@@ -36,9 +39,20 @@ const menuItems = [
     title: 'Products',
     icon: <IoBasketOutline />,
   },
+  {
+    path: '/dashboard/profile',
+    title: 'Perfil',
+    icon: <IoPersonOutline />,
+  },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await getServerSession(authOptions);
+
+  const userName = session?.user?.name!;
+  const imageUrl = session?.user?.image!;
+  // TODO:  const userRole = session?;
+
   return (
     <aside className='ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]'>
       <div>
@@ -56,14 +70,14 @@ export const Sidebar = () => {
 
         <div className='mt-8 text-center'>
           <Image
-            src='https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp'
+            src={imageUrl}
             className='w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28'
             alt=''
             width={32}
             height={32}
           />
           <h5 className='hidden mt-4 text-xl font-semibold text-gray-600 lg:block'>
-            Cynthia J. Watts
+            {userName}
           </h5>
           <span className='hidden text-gray-400 lg:block'>Admin</span>
         </div>
