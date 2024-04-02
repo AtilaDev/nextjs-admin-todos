@@ -40,9 +40,9 @@ export const authOptions: NextAuthOptions = {
 
         if (user) {
           return user;
-        } else {
-          return null;
         }
+
+        return null;
       },
     }),
   ],
