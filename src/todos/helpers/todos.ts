@@ -9,7 +9,7 @@ export const updateTodo = async (id: string, complete: boolean) => {
     body: JSON.stringify(body),
   }).then((res) => res.json());
 
-  console.log({ response });
+  // console.log({ response });
 
   return response;
 };
@@ -25,7 +25,7 @@ export const createTodo = async (description: string) => {
     body: JSON.stringify(body),
   }).then((res) => res.json());
 
-  console.log({ response });
+  // console.log({ response });
 
   return response;
 };

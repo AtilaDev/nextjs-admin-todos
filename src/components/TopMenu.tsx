@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import {
-  CiBellOn,
   CiChat1,
   CiMenuBurger,
   CiSearch,

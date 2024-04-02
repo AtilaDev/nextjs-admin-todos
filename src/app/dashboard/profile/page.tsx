@@ -7,7 +7,7 @@ export default function ProfilePage() {
   const { data: session } = useSession();
 
   useEffect(() => {
-    console.log('Client side');
+    // console.log('Client side');
   }, []);
 
   return (

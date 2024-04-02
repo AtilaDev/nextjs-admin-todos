@@ -49,7 +49,7 @@ export const Sidebar = async () => {
   const session = await getServerSession(authOptions);
 
   const userName = session?.user?.name!;
-  const imageUrl = session?.user?.image!;
+  const imageUrl = session?.user?.image;
   const userRoles = session?.user?.roles ?? ['no-roles'];
 
   return (
@@ -68,13 +68,24 @@ export const Sidebar = async () => {
         </div>
 
         <div className='mt-8 text-center'>
-          <Image
-            src={imageUrl}
-            className='w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28'
-            alt=''
-            width={32}
-            height={32}
-          />
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              className='w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28'
+              alt=''
+              width={32}
+              height={32}
+            />
+          ) : (
+            <Image
+              src='https://directemployers.org/wp-content/uploads/2018/08/avatar-JohnDoe.jpg'
+              className='w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28'
+              alt=''
+              width={32}
+              height={32}
+            />
+          )}
+
           <h5 className='hidden mt-4 text-xl font-semibold text-gray-600 lg:block'>
             {userName}
           </h5>

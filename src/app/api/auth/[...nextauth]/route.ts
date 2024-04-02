@@ -4,6 +4,8 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import * as actions from '@/auth/actions/auth-actions';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -15,6 +17,33 @@ export const authOptions: NextAuthOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
       clientSecret: process.env.GITHUB_SECRET!,
+    }),
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: {
+          label: 'Email',
+          type: 'email',
+          placeholder: 'user@email.com',
+        },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: '********',
+        },
+      },
+      async authorize(credentials, req) {
+        const user = await actions.signInEmailPassword(
+          credentials!.email,
+          credentials!.password
+        );
+
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
+      },
     }),
   ],
 
