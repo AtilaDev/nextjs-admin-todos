@@ -2,12 +2,15 @@
 
 import { FormEvent, useState } from 'react';
 import { IoTrashOutline } from 'react-icons/io5';
+// with restful api
 // import * as todosApi from '@/todos/helpers/todos';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { addTodo, deleteCompleted } from '../actions/todo-actions';
 
 export const NewTodo = () => {
+  // with restful api
   // const router = useRouter();
+
   const [description, setDescription] = useState('');
 
   const onSubmit = async (e: FormEvent) => {
@@ -17,10 +20,14 @@ export const NewTodo = () => {
       setDescription('');
       return;
     }
+
+    // with restful api
     // await todosApi.createTodo(description);
+    // router.refresh();
+
+    // With server actions
     await addTodo(description);
     setDescription('');
-    // router.refresh();
   };
 
   return (

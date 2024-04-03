@@ -1,4 +1,4 @@
-# Admin Todos [WIP]
+# Admin Todos
 
 ### Development
 
